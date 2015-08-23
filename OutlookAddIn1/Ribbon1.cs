@@ -230,7 +230,6 @@ namespace OutlookAddIn1
 //                    MainForm.label5.Text = BadObjects + " bad objects";
 
                 MainForm.progressBar1.Value = CurrentIndex;
-                MainForm.label1.Text = "Items found: " + ItemsFound;
                 MainForm.progressBar1.PerformStep();
             }
 
@@ -240,7 +239,7 @@ namespace OutlookAddIn1
                 {
                     MainForm.progressBar1.Visible = false;
                     MainForm.label4.Text = ItemsFound + " duplicates";
-                    MainForm.label5.Text = BadObjects + " bad objects";
+//                    MainForm.label5.Text = BadObjects + " bad objects";
                     MainForm.linkLabel1.Text = (ItemsFound > 0 || BadObjects > 0) ?
                         "Cleaning finished" :
                         "Okay, no trash found";
