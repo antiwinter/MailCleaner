@@ -67,7 +67,10 @@ namespace OutlookAddIn1
             {
                 // Break recursive
                 if (MainForm.StopState == 1)
+                {
                     return;
+                    MainForm.StopState = 2;
+                }
 
                 if (m is Outlook.MailItem)
                 {
@@ -233,17 +236,14 @@ namespace OutlookAddIn1
                 MainForm.progressBar1.PerformStep();
             }
 
-            if( MainForm.StopState > 0)
+            if( MainForm.StopState == 2)
             {
-                if (MainForm.StopState > 1)
-                {
-                    MainForm.progressBar1.Visible = false;
-                    MainForm.label4.Text = ItemsFound + " duplicates";
+                MainForm.progressBar1.Visible = false;
+                MainForm.label4.Text = ItemsFound + " duplicates";
 //                    MainForm.label5.Text = BadObjects + " bad objects";
-                    MainForm.linkLabel1.Text = (ItemsFound > 0 || BadObjects > 0) ?
-                        "Cleaning finished" :
-                        "Okay, no trash found";
-                }
+                MainForm.linkLabel1.Text = (ItemsFound > 0 /* || BadObjects > 0 */) ?
+                    "Cleaning finished" :
+                    "Okay, no trash found";
                 timer1.Stop();
                 button1.Enabled = true;
             }
